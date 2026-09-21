@@ -166,18 +166,17 @@ python3 OU_field.py --root . --pid T365 --ses 05 --kde-px 26 \
 
 ## Notes
 
-- On OneDrive-synced folders a figure write can fail with `OSError: [Errno 22]`; `reproduce.py` writes to `/tmp` and copies instead.
 - Faces are detected in every stimulus folder, so IAPS images appearing inside ABM folders are detected more than once; duplicates are dropped by `(stem, face_id)`.
 - Neutral images yield fewer face detections, which confounds the third valence condition; valence tests use Negative vs Positive only.
 - `OU_field.py` estimates σ² slightly differently from `ou_visits.py` and colours paths by a local rate that is not the θ of the document; use it for inspection only.
 
-## Use of AI
+## Use of AI (Claude Opus 5.0 on High) 
 
 An AI assistant (Claude, Anthropic) was used during development and write-up. What it did, and what it did not:
 
 **Human-authored**
 - The model formulation in `ou_gaze.pdf` §1–2 and the validation design in §4.1–4.2 (text edited by the AI only for spelling and LaTeX formatting).
-- The study design, data collection, and choice of what to test.
+- The pipeline design, validation procedure, and choice of what to test.
 - Review and acceptance of every change and every reported number.
 
 **AI-assisted code**
