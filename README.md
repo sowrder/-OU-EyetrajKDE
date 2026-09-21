@@ -170,3 +170,25 @@ python3 OU_field.py --root . --pid T365 --ses 05 --kde-px 26 \
 - Faces are detected in every stimulus folder, so IAPS images appearing inside ABM folders are detected more than once; duplicates are dropped by `(stem, face_id)`.
 - Neutral images yield fewer face detections, which confounds the third valence condition; valence tests use Negative vs Positive only.
 - `OU_field.py` estimates σ² slightly differently from `ou_visits.py` and colours paths by a local rate that is not the θ of the document; use it for inspection only.
+
+## Use of AI
+
+An AI assistant (Claude, Anthropic) was used during development and write-up. What it did, and what it did not:
+
+**Human-authored**
+- The model formulation in `ou_gaze.pdf` §1–2 and the validation design in §4.1–4.2 (text edited by the AI only for spelling and LaTeX formatting).
+- The study design, data collection, and choice of what to test.
+- Review and acceptance of every change and every reported number.
+
+**AI-assisted code**
+- `reproduce.py` was written by the AI: the pipeline driver, provenance record, every validation statistic, and the figures.
+- Changes to the stage scripts: repointing paths to the current directory layout (`--root`, `--ext`), taking participant and session from the directory in `trajextract.py`, the `--kde-px` / `--kde-mode` options and per-image Silverman bandwidth in `ou_visits.py`, and writing the Λ_k eigenvalues and eigenvectors to `visits.csv`.
+- The docstrings and comments of all four stage scripts were rewritten by the AI to match the document's notation; the code itself was checked unchanged against the prior versions (identical syntax trees apart from docstrings).
+- Exploratory analysis scripts used during development (bandwidth comparisons, face-capture nulls, per-session effects), whose final forms are folded into `reproduce.py`.
+
+**AI-assisted analysis and writing**
+- Choice and design of several tests: the permutation nulls for detailed balance and between-face differences, the uniform and same-participant nulls for face capture, per-session (two-stage) estimation, and the re-entry split into brief and sustained visits.
+- Interpretation of intermediate results, including corrections of its own earlier misreadings (the transition asymmetry, first read as a finding, is counting bias).
+- Drafting of `ou_gaze.pdf` §3 (pipeline and fitting procedure), §4.3 (methods for the result tests) and §5 (results), and of this README.
+
+Every number in §5 is produced by `reproduce.py` from the raw data and can be regenerated with `--mode all`.
